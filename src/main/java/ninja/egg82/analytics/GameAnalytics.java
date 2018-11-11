@@ -76,10 +76,15 @@ public class GameAnalytics implements Closeable {
             initResult = new GAInitResult(false, -1, new String[0]);
             return;
         }
+        JSONArray flagsArray = (JSONArray) obj.get("flags");
+        String[] flags = new String[flagsArray.size()];
+        for (int i = 0; i < flagsArray.size(); i++) {
+            flags[i] = (String) flagsArray.get(i);
+        }
         result = new GAInitResult(
                 (Boolean) obj.get("enabled"),
                 (int) (Math.floorDiv(System.currentTimeMillis(), 1000L) - ((Number) obj.get("server_ts")).intValue()),
-                (String[]) obj.get("flags")
+                flags
         );
         initResult = result;
     }

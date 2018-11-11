@@ -28,7 +28,7 @@ public class GAHMAC {
         }
 
         Mac hmac = getMac();
-        byte[] retVal = hmac.doFinal();
+        byte[] retVal = hmac.doFinal(data);
         pool.add(hmac);
         return retVal;
     }
